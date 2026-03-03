@@ -1,0 +1,159 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  height:100%;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* Background */
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: radial-gradient(circle at 30% 20%, #fff6b7, #ffd54f 40%, #ffca28 100%);
+  position:relative;
+}
+
+/* Animated gradient glow */
+body::before{
+  content:"";
+  position:absolute;
+  width:70vmax;
+  height:70vmax;
+  background: conic-gradient(
+    #ff0080,
+    #ff8c00,
+    #ffd400,
+    #00ff99,
+    #00c6ff,
+    #9d00ff,
+    #ff0080
+  );
+  filter:blur(120px);
+  opacity:.25;
+  animation:spin 25s linear infinite;
+  z-index:0;
+}
+
+@keyframes spin{
+  100%{transform:rotate(360deg);}
+}
+
+/* Layout wrapper */
+.wrapper{
+  width:100%;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:2;
+}
+
+/* Card */
+.card{
+  width:100%;
+  max-width:480px;
+  padding:clamp(30px,5vw,50px);
+  border-radius:28px;
+  background:transparent;
+  backdrop-filter:blur(30px);
+  border:none;
+  box-shadow:none;
+  text-align:center;
+  cursor:pointer;
+  transition:all .6s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+  overflow:hidden;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* Title */
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(28px,5vw,40px);
+  letter-spacing:3px;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,#ff0080,#ff8c00,#00c6ff,#00ff99);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Click text */
+.open-text{
+  font-size:14px;
+  letter-spacing:2px;
+  opacity:.8;
+  transition:.4s ease;
+}
+
+/* Content */
+.content{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:all .7s ease;
+}
+
+.card.open .content{
+  max-height:1000px;
+  opacity:1;
+  margin-top:25px;
+}
+
+.card.open .open-text{
+  opacity:0;
+  transform:translateY(-10px);
+}
+
+/* Message */
+.message{
+  font-size:clamp(14px,2.5vw,16px);
+  line-height:1.7;
+  margin-bottom:25px;
+  color:#333;
+}
+
+/* Video */
+.holi-video{
+  width:100%;
+  border-radius:22px;
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
+  border:3px solid rgba(255,255,255,.8);
+}
+
+/* Particle Layer */
+#particle-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* Burst */
+.burst{
+  position:absolute;
+  border-radius:50%;
+  opacity:.9;
+  animation:burst 1.2s ease-out forwards;
+}
+
+@keyframes burst{
+  0%{transform:scale(.2);opacity:1}
+  70%{transform:scale(1.8);opacity:.8}
+  100%{transform:scale(2.5);opacity:0}
+}
+
+/* Mobile optimization */
+@media(max-width:480px){
+  body{
+    padding:15px;
+  }
+}
